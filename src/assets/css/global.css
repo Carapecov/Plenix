@@ -1,0 +1,102 @@
+/* Esse aqui e  o arquvio do estilo global, onde vai o header e o footer */
+
+/* Aqui vai as cores */
+:root {
+    --cor-primaria: #10B981;
+    --cor-secundaria: #000000;
+    --cor-fundo: #F4F4F5;
+    --cor-texto: #333333;
+    --cor-branco: #FFFFFF;
+    /* fundo: #F4F4F5, texto: #333333, branco: #FFFFFF */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Arial, Helvetica, sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branco);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 4px solid var(--cor-primaria);
+}
+
+header h1 {
+    color: var(--cor-primaria);
+    font-size: 28px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--cor-branco);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: var(--cor-primaria);
+    color: var(--cor-secundaria);
+}
+
+.container {
+    padding: 30px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: 60vh;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branco);
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;   
+}
+
+.btn:hover {
+    background-color: #3a3636 ;
+}
+
+footer {
+    text-align: center;
+    padding: 25px 20px;
+    margin-top: 40px;
+    background-color: var(--cor-secundaria);
+    color: #9CA3AF;
+    font-size: 14px;
+    border-top: 4px solid var(--cor-primaria);
+}
+
+footer a{
+    color: var(--cor-primaria);
+    text-decoration: none;
+    font-weight: bold;
+}

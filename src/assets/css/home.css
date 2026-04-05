@@ -1,0 +1,42 @@
+.home {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.home h2 {
+    font-size: 32px;
+    color: var(--cor-secundaria);   
+}
+
+.home p {
+    font-size: 18px;
+    color: #9CA3AF;
+    margin-bottom: 40px;
+    max-width: 600;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.home .btn-glass {
+    display: block;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, var(--cor-primaria), 0% #0c8c61 100%);
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 800;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 20px rgba( 16, 185, 129, 0.4);
+    transition: all 0.3s ease;   
+}
+
+.home .btn-glass:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba( 16, 185, 129, 0.6);
+    background: linear-gradient(135deg, #12d192 0%, #0e9c6c 100%);
+}
