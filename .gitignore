@@ -1,0 +1,14 @@
+# Ignorar arquivos de banco de dados reais e logs
+*.sql
+*.sqlite
+*.log
+
+# Ignorar o arquivo de conexão real 
+/src/config/database.php
+
+# Ignorar pastas de dependências 
+/vendor/
+
+# Ignorar arquivos de sistema operacional (Mac/Windows) gerados automaticamente
+.DS_Store
+Thumbs.db
