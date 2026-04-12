@@ -1,8 +1,18 @@
 <?php
 class Perfil {
-    public function avaliarRespostas($dadosPost) {
-        //Aqui faremos a lógica pra avaliar o perfil do usuário
-        return "Perfil Avaliado";
+    private $pdo;
+
+    public function __construct($conexao)
+    {
+        $this->pdo = $conexao;
+    }
+    public function avaliarRespostas($fase, $dor) {
+        return true;
+    }
+
+    public function buscarDicas ($categoria) { 
+
+    return [];
     }
 }
 ?>
