@@ -6,30 +6,59 @@ class Dica {
         $this->pdo = $conexao;
     }
 
-    private function dicasSimulados() {
-        return [
-            'dinheiro' => [
-                'titulo' => 'a regra dos dez reais',
-                'conteudo' => 'Se o custo total para trabalhar em paz (MEI + Licença) é de R$ 150 por mês, guarde R$ 10,00 por dia. Separe os primeiros R$ 10 que ganhar e esqueça que eles existem. No fim do mês, a conta fecha sem desespero e sobra 70 reais guardados.',
-            ],
-            'prefeitura' => [
-                'titulo' => 'MEI aberto: já posso colocar meu carrinho na rua ? ',
-                'conteudo' => 'Atenção: O MEI protege a sua saúde (INSS), mas NÃO impede a fiscalização de derrubar e levar suas mercadorias. Para proteger suas mercadorias na rua, você precisa do papel da prefeitura (TPU/Licença). Vá à Subprefeitura do seu bairro e pergunte se há vaga para a rua desejada antes de pagar qualquer coisa.',
-            ],
-            'espaço' => [
-                'titulo' => 'Como lidar com a falta de espaço na calçada ?',
-                'conteudo' => 'Use a verticalização. Em vez de espalhar mesas no chão, cresça seu carrinho para cima com prateleiras e ganchos. Tenha um estoque invisível perto e deixe no carrinho apenas o que vai vender nas próximas horas.',
-            ]
-        ];
-    }
-
-
     public function buscarTodas() {
-        return $this->dicasSimulados(); 
+        if ($this->pdo === null) return [];
+        try {
+            $stmt = $this->pdo->query("
+                SELECT dicas.*, perfis_dor.fase_negocio 
+                FROM dicas 
+                LEFT JOIN perfis_dor ON dicas.perfil_dor_id = perfis_dor.id 
+                WHERE dicas.visivel = 1 
+                ORDER BY dicas.id DESC
+            ");
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return [];
+        }
     }
-        public function buscarDica($dor) {
-            $todas = $this->dicasSimulados();
-            return $todas[$dor] ?? null;
-        } 
+
+    public function buscarDica($dor) {
+        if ($this->pdo === null) return null;
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM dicas WHERE categoria = :dor AND visivel = 1 LIMIT 1");
+            $stmt->bindParam(':dor', $dor, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return null;
+        }
+    }
+
+    public function buscarDicasPorPerfil($perfil_dor_id) {
+        if ($this->pdo === null) return [];
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM dicas WHERE perfil_dor_id = :id AND visivel = 1");
+            $stmt->bindParam(':id', $perfil_dor_id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return [];
+        }
+    }
+
+    public function avaliarDica($id, $tipo) {
+        if ($this->pdo === null) return false;
+        try {
+            if ($tipo === 'like') {
+                $stmt = $this->pdo->prepare("UPDATE dicas SET curtiu = curtiu + 1 WHERE id = :id");
+            } else {
+                $stmt = $this->pdo->prepare("UPDATE dicas SET nao_gostei = nao_gostei + 1 WHERE id = :id");
+            }
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 }
-?>

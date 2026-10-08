@@ -4,7 +4,7 @@
 // E preencham com as suas configurações locais
 
 $host = 'localhost';
-$dbname = 'plenix_db'; // Nome do banco de dados que vamos criar no phpMyAdmin
+$dbname = 'plenix'; // Nome do banco de dados que vamos criar no phpMyAdmin
 $usuario = 'root';     // Seu usuário do MySQL (padrão XAMPP é 'root')
 $senha = '';           // Sua senha do MySQL (padrão XAMPP é vazio)
 
@@ -14,4 +14,3 @@ try {
 } catch (PDOException $e) {
     die("Erro de conexão com o banco de dados: " . $e->getMessage());
 }
-?>
