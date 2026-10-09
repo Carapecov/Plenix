@@ -41,6 +41,10 @@ O Plenix busca contribuir para esse cenário por meio de uma plataforma digital 
 * XAMPP
 * PhpMyAdmin ou MySQL
 
+## Projeto no ambiente
+
+Colocar o projeto na pasta do htdocs. Acesse a página do xampp, depois htdocs e coloca a pasta do Projeto lá dentro. Depois, só acessar pelo caminho usando localhost
+
 ### Acessando o projeto
 
 Plenix está atualmente na internet, acesse:
